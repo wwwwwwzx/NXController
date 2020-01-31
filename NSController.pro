@@ -17,18 +17,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    inputtable.cpp \
-    main.cpp \
-    mainwindow.cpp \
+    UI/inputtable.cpp \
+    UI/main.cpp \
+    UI/mainwindow.cpp \
     nscontroller.cpp
 
 HEADERS += \
-    inputtable.h \
-    mainwindow.h \
+    UI/inputtable.h \
+    UI/mainwindow.h \
     nscontroller.h
 
 FORMS += \
-    mainwindow.ui
+    UI/mainwindow.ui
 
 TRANSLATIONS += \
     NSController_zh_CN.ts

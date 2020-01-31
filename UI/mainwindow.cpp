@@ -3,6 +3,7 @@
 #include "nscontroller.h"
 #include <QSerialPortInfo>
 #include <QKeyEvent>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
@@ -138,4 +139,5 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
     c.PressLeftStick(-1);
   else if (key == keytable.RS)
     c.PressRightStick(-1);
+  qDebug() <<
 }
