@@ -1,5 +1,4 @@
 #include "nscontroller.h"
-#include <QDebug>
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QString>
@@ -11,7 +10,7 @@ bool nscontroller::connect(QString port) {
   if (port == "")
     return false;
   ser.setPortName(port);
-  return ser.open(QIODevice::ReadWrite);
+  return ser.open(QIODevice::WriteOnly);
 }
 
 void nscontroller::write(QString msg) {

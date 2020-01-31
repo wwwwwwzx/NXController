@@ -1,7 +1,7 @@
 #ifndef NSCONTROLLER_H
 #define NSCONTROLLER_H
-#include <QSerialPort>
 #include <QString>
+#include <QSerialPort>
 
 class nscontroller {
  public:

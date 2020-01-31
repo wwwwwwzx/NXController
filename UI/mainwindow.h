@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "nscontroller.h"
+#include "nscontroller_cfw.h"
 #include "inputtable.h"
 
 QT_BEGIN_NAMESPACE
@@ -20,12 +21,13 @@ class MainWindow : public QMainWindow {
   void keyPressEvent(QKeyEvent* event);
   void keyReleaseEvent(QKeyEvent* event);
   nscontroller c;
+  nscontroller_cfw b;
   inputtable keytable;
 
  private slots:
   void RefreshDeviceList();
-  void ConnectSerial();
-  void DisconnectSerial();
+  void Connect();
+  void Disconnect();
 
  private:
   Ui::MainWindow* ui;

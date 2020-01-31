@@ -2,6 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT     += serialport
+QT     += network
 
 CONFIG += c++11
 
@@ -20,12 +21,14 @@ SOURCES += \
     UI/inputtable.cpp \
     UI/main.cpp \
     UI/mainwindow.cpp \
-    nscontroller.cpp
+    nscontroller.cpp \
+    nscontroller_cfw.cpp
 
 HEADERS += \
     UI/inputtable.h \
     UI/mainwindow.h \
-    nscontroller.h
+    nscontroller.h \
+    nscontroller_cfw.h
 
 FORMS += \
     UI/mainwindow.ui
