@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   connect(ui->B_Disconnect, SIGNAL(released()), this, SLOT(Disconnect()));
   ui->B_Disconnect->setEnabled(false);
   Connect();
+  if (ui->B_Connect->isEnabled())
+      ui->RB_Socket->setChecked(true);
 }
 
 MainWindow::~MainWindow() {
@@ -189,6 +191,8 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
 
 void MainWindow::keyReleaseEvent(QKeyEvent* event) {
   if (ui->B_Connect->isEnabled())
+    return;
+  if (event->isAutoRepeat())
     return;
   Qt::Key key = (Qt::Key)event->key();
   if (ui->RB_Serial->isChecked()) {
