@@ -6,7 +6,7 @@
 ## Use keyboard to play Switch games
 - Via serial port: [Switch-Fightstick](https://github.com/wwwwwwzx/Switch-Fightstick)  
       - Arduino UNO R3 or other boards, check [here](https://github.com/shinyquagsire23/Switch-Fightstick/blob/master/README.md)  
-      - USB to TTL/Serial module (FR232TL)
+      - USB to TTL/Serial module (FT232RL)
 - Via wifi connection: [sys-botbase](https://github.com/olliz0r/sys-botbase)  
       - Modified console only
 

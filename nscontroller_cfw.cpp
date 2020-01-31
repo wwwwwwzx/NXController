@@ -63,6 +63,19 @@ void nscontroller_cfw::RStick(short x, short y) {
   ts.waitForBytesWritten();
 }
 
+QString nscontroller_cfw::peek(uint offset, uint size) {
+  QString output = "peek 0x" + QString::number(offset, 16) + " " + QString::number(size) + "\r\n";
+  ts.write(output.toUtf8());
+  ts.waitForBytesWritten();
+  ts.waitForReadyRead();
+  return ts.readAll();
+}
+
+void nscontroller_cfw::poke(uint offset, QByteArray data) {
+  ts.write(("poke 0x" + QString::number(offset, 16) + " 0x" + data.toHex(0) + "\r\n").toUtf8());
+  ts.waitForBytesWritten();
+}
+
 void nscontroller_cfw::close() {
   ts.close();
 }
