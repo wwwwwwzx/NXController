@@ -1,0 +1,47 @@
+environment:
+  matrix:
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    QTPATH: C:\Qt\5.13\msvc2017_64
+    OS: win64
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALL: x64
+  - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1804
+    OS: linux
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    QTPATH: C:\Qt\5.13\msvc2017
+    OS: win32
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALL: x86
+
+install:
+    - git submodule update --init --recursive    
+    
+before_build:
+    # Windows
+    - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
+    - cmd: call %VCVARSALLPATH% %VCVARSALL%
+    # Linux
+    - sh: sudo apt-get -qq update
+    - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
+    
+build_script:
+    - qmake NSController.pro
+    # Windows
+    - cmd: jom -j %NUMBER_OF_PROCESSORS%
+    # Linux
+    - sh: make -j $(nproc)
+    
+after_build:
+    # Windows
+    - cmd: md NSController-windows
+    - cmd: move release\NSController.exe NSController-windows\NSController.exe 
+    - cmd: windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw NSController-windows\NSController.exe
+    - cmd: del NSController-windows\vc_redist*.exe
+    - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll NSController-windows\platforms\
+    - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll NSController-windows\styles\
+    - cmd: 7z a NSController-%OS%.zip NSController-windows\
+    # Linux
+    - sh: zip -r NSController-linux.zip NSController
+    
+artifacts:
+- path: NSController-%OS%.zip
