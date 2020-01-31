@@ -10,6 +10,9 @@ class nscontroller_cfw {
   void press(QString button);
   void click(QString button);
   void release(QString button);
+  void LStick(short x, short y);
+  void RStick(short x, short y);
+  short LS_X = 0, LS_Y = 0, RS_X = 0, RS_Y = 0;
   void close();
 
  public slots:

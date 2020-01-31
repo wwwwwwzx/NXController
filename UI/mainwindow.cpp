@@ -57,6 +57,8 @@ void MainWindow::Disconnect() {
 void MainWindow::keyPressEvent(QKeyEvent* event) {
   if (ui->B_Connect->isEnabled())
     return;
+  if (event->isAutoRepeat())
+    return;
   Qt::Key key = (Qt::Key)event->key();
   if (ui->RB_Serial->isChecked()) {
     if (key == keytable.A)
@@ -121,13 +123,13 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
     else if (key == keytable.Y)
       b.press("Y");
     else if (key == keytable.D_Up)
-      b.press("DUP");
+      b.click("DUP");
     else if (key == keytable.D_Down)
-      b.press("DDOWN");
+      b.click("DDOWN");
     else if (key == keytable.D_Left)
-      b.press("DLEFT");
+      b.click("DLEFT");
     else if (key == keytable.D_Right)
-      b.press("DRIGHT");
+      b.click("DRIGHT");
     else if (key == keytable.Home)
       b.press("HOME");
     else if (key == keytable.Capture)
@@ -148,6 +150,22 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
       b.press("LSTICK");
     else if (key == keytable.RS)
       b.press("RSTICK");
+    else if (key == keytable.LS_Up)
+      b.LStick(b.LS_X, 0x7FFF);
+    else if (key == keytable.LS_Down)
+      b.LStick(b.LS_X, -0x8000);
+    else if (key == keytable.LS_Left)
+      b.LStick(-0x8000, b.LS_Y);
+    else if (key == keytable.LS_Right)
+      b.LStick(0x7FFF, b.LS_Y);
+    else if (key == keytable.RS_Up)
+      b.RStick(b.RS_X, 0x7FFF);
+    else if (key == keytable.RS_Down)
+      b.RStick(b.RS_X, -0x8000);
+    else if (key == keytable.RS_Left)
+      b.RStick(-0x8000, b.RS_Y);
+    else if (key == keytable.RS_Right)
+      b.RStick(0x7FFF, b.RS_Y);
   }
 }
 
@@ -201,14 +219,6 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
       b.release("X");
     else if (key == keytable.Y)
       b.release("Y");
-    else if (key == keytable.D_Up)
-      b.release("DUP");
-    else if (key == keytable.D_Down)
-      b.release("DDOWN");
-    else if (key == keytable.D_Left)
-      b.release("DLEFT");
-    else if (key == keytable.D_Right)
-      b.release("DRIGHT");
     else if (key == keytable.Home)
       b.release("HOME");
     else if (key == keytable.Capture)
@@ -229,5 +239,13 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
       b.release("LSTICK");
     else if (key == keytable.RS)
       b.release("RSTICK");
+    else if (key == keytable.LS_Left || key == keytable.LS_Right)
+      b.LStick(0, b.LS_Y);
+    else if (key == keytable.LS_Up || key == keytable.LS_Down)
+      b.LStick(b.LS_X, 0);
+    else if (key == keytable.RS_Left || key == keytable.RS_Right)
+      b.RStick(0, b.RS_Y);
+    else if (key == keytable.RS_Up || key == keytable.RS_Down)
+      b.RStick(b.RS_X, 0);
   }
 }
