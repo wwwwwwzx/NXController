@@ -22,7 +22,7 @@ before_build:
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     # Linux
     - sh: sudo apt-get -qq update
-    - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
+    - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default libqt5serialport5-dev
     
 build_script:
     - qmake NSController.pro
