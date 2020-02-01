@@ -180,13 +180,13 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
     else if (key == keytable.Y)
       b.press("Y");
     else if (key == keytable.D_Up)
-      b.click("DUP");
+      b.press("DUP");
     else if (key == keytable.D_Down)
-      b.click("DDOWN");
+      b.press("DDOWN");
     else if (key == keytable.D_Left)
-      b.click("DLEFT");
+      b.press("DLEFT");
     else if (key == keytable.D_Right)
-      b.click("DRIGHT");
+      b.press("DRIGHT");
     else if (key == keytable.Home)
       b.press("HOME");
     else if (key == keytable.Capture)
@@ -286,6 +286,14 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
       b.release("PLUS");
     else if (key == keytable.Minus)
       b.release("MINUS");
+    else if (key == keytable.D_Up)
+      b.release("DUP");
+    else if (key == keytable.D_Down)
+      b.release("DDOWN");
+    else if (key == keytable.D_Left)
+      b.release("DLEFT");
+    else if (key == keytable.D_Right)
+      b.release("DRIGHT");
     else if (key == keytable.L)
       b.release("L");
     else if (key == keytable.R)
