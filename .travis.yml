@@ -1,6 +1,6 @@
 language: cpp
 
-matrix:
+jobs:
   include:
     - os: osx
 
@@ -11,14 +11,15 @@ install:
 
 script:
   - qmake NXController.pro
+  - make -j $(sysctl -n hw.physicalcpu)
 
 before_deploy:
-  - /usr/local/Cellar/qt/5.13.1/bin/macdeployqt NXController.app -dmg -verbose=2
+  - /usr/local/Cellar/qt/5.13.2/bin/macdeployqt NXController.app -dmg -verbose=2
   - zip -r NXController-macOS.zip NXController.dmg
 
 deploy:
   provider: releases
-  api_key:
+  token:
     secure: XkO7X4SiqTnLJFboDwYp9Nlx8DuyIHEabNjUDAwspZ6X75KShPUilMbESCjW9F8gorSvgyXNKX1rui2L8nWm1yuavVw8U6E/YSEsDnDIyMwEiidBKMOSddfbL0pVXlQnIxxEBZKq3riKfovGOCU0cjXZk2pbiXIaCge7bLCJrNregDZ5BxoaG5HPyBpBv7FS6O+455dac74dBlKWWdjPysQYKjegF6keKNNJvdWTMmGIIpoQIqNAoH1F/ZqhjPG4VCAbFZJp7SvUhlFbfMfdx7vg1QLOMOKJc0R5FPvi2X2VDRH8TpcPqR9bWtiV7qtMT1C8O158OMgjqG1yodQ030vlthCXzJGvfoLbQcleVewR+suiYpBrgcA3pb1U9yw0ZGwDPRO74chkTRSAzu2Lylc+LowIprZJgeRweVjEX4yq8Kljh4BPjp3ZhnE/IKbdvnzA+Zypi13kvJG4UP/5CW5gX9MfDB61a9MTFd20IX/wunm0JUoQ/eESKITp8HdHZLuM19gyDoNsPUBdKaczqAQQKkuhPAyNft5bqQQEhmLtdiKeOUybVJx4FVpin1nCbMzjIPEIRs+HJmh0qhhgfq/pEmPqhO2FajsxzAsizRP5iiV7oGctCQxMHn1yDUnuPFp2JpZwQJ8xMIJsefnlgj+JyleIjjZG4/EkYZ0rrOA=
   file: NXController-macOS.zip
   skip_cleanup: true
