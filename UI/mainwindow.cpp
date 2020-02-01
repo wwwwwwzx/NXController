@@ -18,12 +18,13 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "nscontroller.h"
+#include <QSettings>
 #include <QSerialPortInfo>
 #include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  QSettings setting;
   RefreshDeviceList();
   connect(ui->B_Refresh, SIGNAL(released()), this, SLOT(RefreshDeviceList()));
   connect(ui->B_Connect, SIGNAL(released()), this, SLOT(Connect()));
@@ -33,6 +34,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   ui->B_Disconnect->setEnabled(false);
   setMinimumHeight(135);
   setMaximumHeight(135);
+  ui->ipaddress->setPlainText(setting.value("settings/ip", "192.168.0.1").toString());
+  ui->ramaddress->setPlainText(setting.value("settings/ramaddress", "0").toString());
+  ui->datasize->setPlainText(setting.value("settings/datasize", "8").toString());
   Connect();
   if (ui->B_Connect->isEnabled())
     ui->RB_Socket->setChecked(true);
@@ -43,21 +47,29 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::RefreshDeviceList() {
+  QSettings setting;
+  QString last_device = setting.value("settings/serialport", "").toString();
   ui->devicelist->clear();
   Q_FOREACH (QSerialPortInfo port, QSerialPortInfo::availablePorts())
-    if (port.hasProductIdentifier())
+    if (port.hasProductIdentifier()) {
       ui->devicelist->addItem((port.portName()));
+      if (port.portName() == last_device)
+        ui->devicelist->setCurrentIndex(ui->devicelist->count() - 1);
+    }
 }
 
 void MainWindow::Connect() {
+  QSettings setting;
   if (ui->RB_Serial->isChecked()) {
     if (!c.connect(ui->devicelist->currentText()))
       return;
+    setting.setValue("settings/serialport", ui->devicelist->currentText());
   } else {
     if (!b.connect(ui->ipaddress->toPlainText()))
       return;
     setMaximumHeight(210);
     setMinimumHeight(210);
+    setting.setValue("settings/ip", ui->ipaddress->toPlainText());
   }
   ui->B_Connect->setEnabled(false);
   ui->B_Disconnect->setEnabled(true);
@@ -86,13 +98,17 @@ void MainWindow::Disconnect() {
 void MainWindow::Read() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
+  QSettings setting;
   ui->data->setPlainText(b.peek(ui->ramaddress->toPlainText(), ui->datasize->toPlainText()));
+  setting.setValue("settings/ramaddress", ui->ramaddress->toPlainText());
 }
 
 void MainWindow::Write() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
+  QSettings setting;
   b.poke(ui->ramaddress->toPlainText(), ui->data->toPlainText());
+  setting.setValue("settings/datasize", ui->datasize->toPlainText());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {
