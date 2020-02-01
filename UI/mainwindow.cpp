@@ -28,10 +28,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   connect(ui->B_Refresh, SIGNAL(released()), this, SLOT(RefreshDeviceList()));
   connect(ui->B_Connect, SIGNAL(released()), this, SLOT(Connect()));
   connect(ui->B_Disconnect, SIGNAL(released()), this, SLOT(Disconnect()));
+  connect(ui->B_Read, SIGNAL(released()), this, SLOT(Read()));
+  connect(ui->B_Write, SIGNAL(released()), this, SLOT(Write()));
   ui->B_Disconnect->setEnabled(false);
+  setMinimumHeight(135);
+  setMaximumHeight(135);
   Connect();
   if (ui->B_Connect->isEnabled())
-      ui->RB_Socket->setChecked(true);
+    ui->RB_Socket->setChecked(true);
 }
 
 MainWindow::~MainWindow() {
@@ -52,6 +56,8 @@ void MainWindow::Connect() {
   } else {
     if (!b.connect(ui->ipaddress->toPlainText()))
       return;
+    setMaximumHeight(210);
+    setMinimumHeight(210);
   }
   ui->B_Connect->setEnabled(false);
   ui->B_Disconnect->setEnabled(true);
@@ -66,12 +72,26 @@ void MainWindow::Disconnect() {
     c.close();
   else
     b.close();
+  setMaximumHeight(135);
+  setMinimumHeight(135);
   ui->B_Connect->setEnabled(true);
   ui->B_Disconnect->setEnabled(false);
   ui->devicelist->setEnabled(true);
   ui->ipaddress->setEnabled(true);
   ui->RB_Serial->setEnabled(true);
   ui->RB_Socket->setEnabled(true);
+}
+
+void MainWindow::Read() {
+  if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
+    return;
+  ui->data->setPlainText(b.peek(ui->ramaddress->toPlainText(), ui->datasize->toPlainText()));
+}
+
+void MainWindow::Write() {
+  if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
+    return;
+  b.poke(ui->ramaddress->toPlainText(), ui->data->toPlainText());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {

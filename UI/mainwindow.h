@@ -46,6 +46,8 @@ class MainWindow : public QMainWindow {
   void RefreshDeviceList();
   void Connect();
   void Disconnect();
+  void Write();
+  void Read();
 
  private:
   Ui::MainWindow* ui;

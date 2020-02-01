@@ -31,7 +31,9 @@ class nscontroller_cfw {
   void LStick(short x, short y);
   void RStick(short x, short y);
   QString peek(uint offset, uint size);
+  QString peek(QString offset, QString size);
   void poke(uint offset, QByteArray data);
+  void poke(QString offset, QString size);
   short LS_X = 0, LS_Y = 0, RS_X = 0, RS_Y = 0;
   void close();
 

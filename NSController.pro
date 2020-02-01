@@ -1,8 +1,5 @@
-QT       += core gui
-
+QT       += core gui serialport network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-QT     += serialport
-QT     += network
 
 CONFIG += c++11
 
@@ -32,9 +29,6 @@ HEADERS += \
 
 FORMS += \
     UI/mainwindow.ui
-
-TRANSLATIONS += \
-    NSController_zh_CN.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
