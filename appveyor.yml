@@ -45,3 +45,12 @@ after_build:
     
 artifacts:
 - path: NXController-%OS%.zip
+
+deploy:
+    provider: GitHub
+    description: ''
+    auth_token:
+        secure: 87c2VphfLpaiV8R+d5PPLixGQ42EVqHL04XoWsHezFSOOrjpiHUYCRYavL5g731Y
+    artifact: NXController-%OS%.zip
+    on:
+        APPVEYOR_REPO_TAG: true

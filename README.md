@@ -15,7 +15,7 @@
 - Via wifi connection: [sys-botbase](https://github.com/olliz0r/sys-botbase)  
   - Modified console only  
   - Read and write memory  
-![](https://i.imgur.com/axVMUc9.png)
+![](https://i.imgur.com/axVMUc9.png)  
 Similar configuration as yuzu:  
 ![](https://i.imgur.com/UqwOnHz.png)
 ## To do
