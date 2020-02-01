@@ -1,5 +1,5 @@
 /*
- * This file is part of NSController
+ * This file is part of NXController
  * Copyright (C) 2020 by wwwwwwzx
  *
  * This program is free software; you can redistribute it and/or
@@ -16,14 +16,14 @@
  * along with this program; If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef NSCONTROLLER_CFW_H
-#define NSCONTROLLER_CFW_H
+#ifndef NXCONTROLLER_CFW_H
+#define NXCONTROLLER_CFW_H
 #include <QTcpSocket>
 #include <QString>
 
-class nscontroller_cfw {
+class nxcontroller_cfw {
  public:
-  nscontroller_cfw();
+  nxcontroller_cfw();
   bool connect(QString IP);
   void press(QString button);
   void click(QString button);
@@ -43,4 +43,4 @@ class nscontroller_cfw {
   QString tohex(short n);
 };
 
-#endif  // NSCONTROLLER_CFW_H
+#endif  // NXCONTROLLER_CFW_H

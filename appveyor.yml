@@ -25,7 +25,7 @@ before_build:
     - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default libqt5serialport5-dev
     
 build_script:
-    - qmake NSController.pro
+    - qmake NXController.pro
     # Windows
     - cmd: jom -j %NUMBER_OF_PROCESSORS%
     # Linux
@@ -33,15 +33,15 @@ build_script:
     
 after_build:
     # Windows
-    - cmd: md NSController-windows
-    - cmd: move release\NSController.exe NSController-windows\NSController.exe 
-    - cmd: windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw NSController-windows\NSController.exe
-    - cmd: del NSController-windows\vc_redist*.exe
-    - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll NSController-windows\platforms\
-    - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll NSController-windows\styles\
-    - cmd: 7z a NSController-%OS%.zip NSController-windows\
+    - cmd: md NXController-windows
+    - cmd: move release\NXController.exe NXController-windows\NXController.exe 
+    - cmd: windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw NXController-windows\NXController.exe
+    - cmd: del NXController-windows\vc_redist*.exe
+    - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll NXController-windows\platforms\
+    - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll NXController-windows\styles\
+    - cmd: 7z a NXController-%OS%.zip NXController-windows\
     # Linux
-    - sh: zip -r NSController-linux.zip NSController
+    - sh: zip -r NXController-linux.zip NXController
     
 artifacts:
-- path: NSController-%OS%.zip
+- path: NXController-%OS%.zip

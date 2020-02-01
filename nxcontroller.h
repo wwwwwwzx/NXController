@@ -1,5 +1,5 @@
 /*
- * This file is part of NSController
+ * This file is part of NXController
  * Copyright (C) 2020 by wwwwwwzx
  *
  * This program is free software; you can redistribute it and/or
@@ -16,14 +16,14 @@
  * along with this program; If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef NSCONTROLLER_H
-#define NSCONTROLLER_H
+#ifndef NXCONTROLLER_H
+#define NXCONTROLLER_H
 #include <QString>
 #include <QSerialPort>
 
-class nscontroller {
+class nxcontroller {
  public:
-  nscontroller();
+  nxcontroller();
   bool connect(QString port);
   void release();
   void close();
@@ -73,4 +73,4 @@ class nscontroller {
   void send(QString msg, int duration = 100);
 };
 
-#endif  // NSCONTROLLER_H
+#endif  // NXCONTROLLER_H

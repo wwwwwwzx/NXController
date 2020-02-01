@@ -1,5 +1,5 @@
 /*
- * This file is part of NSController
+ * This file is part of NXController
  * Copyright (C) 2020 by wwwwwwzx
  *
  * This program is free software; you can redistribute it and/or

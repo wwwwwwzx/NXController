@@ -1,5 +1,5 @@
 /*
- * This file is part of NSController
+ * This file is part of NXController
  * Copyright (C) 2020 by wwwwwwzx
  *
  * This program is free software; you can redistribute it and/or
@@ -20,8 +20,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "nscontroller.h"
-#include "nscontroller_cfw.h"
+#include "nxcontroller.h"
+#include "nxcontroller_cfw.h"
 #include "inputtable.h"
 
 QT_BEGIN_NAMESPACE
@@ -38,8 +38,8 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
   void keyPressEvent(QKeyEvent* event);
   void keyReleaseEvent(QKeyEvent* event);
-  nscontroller c;
-  nscontroller_cfw b;
+  nxcontroller c;
+  nxcontroller_cfw b;
   inputtable keytable;
 
  private slots:

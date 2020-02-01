@@ -14,21 +14,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-RC_ICONS = icons/NSController.ico
-ICON = icons/NSController.icns
+RC_ICONS = icons/NXController.ico
+ICON = icons/NXController.icns
 
 SOURCES += \
     UI/inputtable.cpp \
     UI/main.cpp \
     UI/mainwindow.cpp \
-    nscontroller.cpp \
-    nscontroller_cfw.cpp
+    nxcontroller.cpp \
+    nxcontroller_cfw.cpp
 
 HEADERS += \
     UI/inputtable.h \
     UI/mainwindow.h \
-    nscontroller.h \
-    nscontroller_cfw.h
+    nxcontroller.h \
+    nxcontroller_cfw.h
 
 FORMS += \
     UI/mainwindow.ui

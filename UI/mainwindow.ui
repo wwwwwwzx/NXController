@@ -38,7 +38,7 @@
    <enum>Qt::ClickFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>NSController</string>
+   <string>NXController</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="devicelist">
