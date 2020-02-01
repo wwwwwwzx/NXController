@@ -128,94 +128,6 @@
      <string>IP (sys-botbase)</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="ipaddress">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>60</y>
-      <width>160</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="lineWrapMode">
-     <enum>QPlainTextEdit::NoWrap</enum>
-    </property>
-    <property name="plainText">
-     <string notr="true">192.168.0.1</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="ramaddress">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>140</y>
-      <width>81</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="lineWrapMode">
-     <enum>QPlainTextEdit::NoWrap</enum>
-    </property>
-    <property name="plainText">
-     <string notr="true">0</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="datasize">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>170</y>
-      <width>21</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="lineWrapMode">
-     <enum>QPlainTextEdit::NoWrap</enum>
-    </property>
-    <property name="plainText">
-     <string notr="true">0</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="data">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>140</y>
-      <width>150</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="lineWrapMode">
-     <enum>QPlainTextEdit::NoWrap</enum>
-    </property>
-    <property name="plainText">
-     <string notr="true">0</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="L_Address">
     <property name="geometry">
      <rect>
@@ -285,6 +197,67 @@
     </property>
     <property name="text">
      <string>Write</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ipaddress">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>60</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="text">
+     <string>192.168.0.1</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ramaddress">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>140</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="data">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>140</y>
+      <width>150</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="datasize">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>170</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="text">
+     <string>8</string>
     </property>
    </widget>
   </widget>

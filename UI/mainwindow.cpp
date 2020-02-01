@@ -34,9 +34,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   ui->B_Disconnect->setEnabled(false);
   setMinimumHeight(135);
   setMaximumHeight(135);
-  ui->ipaddress->setPlainText(setting.value("settings/ip", "192.168.0.1").toString());
-  ui->ramaddress->setPlainText(setting.value("settings/ramaddress", "0").toString());
-  ui->datasize->setPlainText(setting.value("settings/datasize", "8").toString());
+  ui->ipaddress->setText(setting.value("settings/ip", "192.168.0.1").toString());
+  ui->ramaddress->setText(setting.value("settings/ramaddress", "0").toString());
+  ui->datasize->setText(setting.value("settings/datasize", "8").toString());
   Connect();
   if (ui->B_Connect->isEnabled())
     ui->RB_Socket->setChecked(true);
@@ -65,11 +65,11 @@ void MainWindow::Connect() {
       return;
     setting.setValue("settings/serialport", ui->devicelist->currentText());
   } else {
-    if (!b.connect(ui->ipaddress->toPlainText()))
+    if (!b.connect(ui->ipaddress->text()))
       return;
     setMaximumHeight(210);
     setMinimumHeight(210);
-    setting.setValue("settings/ip", ui->ipaddress->toPlainText());
+    setting.setValue("settings/ip", ui->ipaddress->text());
   }
   ui->B_Connect->setEnabled(false);
   ui->B_Disconnect->setEnabled(true);
@@ -99,16 +99,16 @@ void MainWindow::Read() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
   QSettings setting;
-  ui->data->setPlainText(b.peek(ui->ramaddress->toPlainText(), ui->datasize->toPlainText()));
-  setting.setValue("settings/ramaddress", ui->ramaddress->toPlainText());
+  ui->data->setText(b.peek(ui->ramaddress->text(), ui->datasize->text()));
+  setting.setValue("settings/ramaddress", ui->ramaddress->text());
 }
 
 void MainWindow::Write() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
   QSettings setting;
-  b.poke(ui->ramaddress->toPlainText(), ui->data->toPlainText());
-  setting.setValue("settings/datasize", ui->datasize->toPlainText());
+  b.poke(ui->ramaddress->text(), ui->data->text());
+  setting.setValue("settings/datasize", ui->datasize->text());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {
