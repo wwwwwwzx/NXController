@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
+    <width>380</width>
     <height>210</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>370</width>
+    <width>380</width>
     <height>135</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>370</width>
+    <width>380</width>
     <height>210</height>
    </size>
   </property>
@@ -44,7 +44,7 @@
    <widget class="QComboBox" name="devicelist">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>20</y>
       <width>180</width>
       <height>25</height>
@@ -70,7 +70,7 @@
    <widget class="QPushButton" name="B_Refresh">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>300</x>
       <y>18</y>
       <width>70</width>
       <height>25</height>
@@ -133,7 +133,7 @@
      <rect>
       <x>140</x>
       <y>60</y>
-      <width>151</width>
+      <width>160</width>
       <height>25</height>
      </rect>
     </property>
@@ -199,7 +199,7 @@
      <rect>
       <x>220</x>
       <y>140</y>
-      <width>140</width>
+      <width>150</width>
       <height>25</height>
      </rect>
     </property>

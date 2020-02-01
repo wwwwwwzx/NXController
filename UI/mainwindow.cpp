@@ -72,8 +72,9 @@ void MainWindow::Disconnect() {
     c.close();
   else
     b.close();
-  setMaximumHeight(135);
   setMinimumHeight(135);
+  setMaximumHeight(135);
+  resize(380, 135);
   ui->B_Connect->setEnabled(true);
   ui->B_Disconnect->setEnabled(false);
   ui->devicelist->setEnabled(true);

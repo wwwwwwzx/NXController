@@ -39,6 +39,8 @@ class nscontroller_cfw {
 
  private:
   QTcpSocket ts;
+  void send(QString msg);
+  QString tohex(short n);
 };
 
 #endif  // NSCONTROLLER_CFW_H

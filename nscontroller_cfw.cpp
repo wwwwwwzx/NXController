@@ -28,65 +28,57 @@ bool nscontroller_cfw::connect(QString IP) {
   return ts.open(QIODevice::ReadWrite);
 }
 
-void nscontroller_cfw::click(QString button) {
-  ts.write(("click " + button + "\r\n").toUtf8());
+void nscontroller_cfw::send(QString msg) {
+  ts.write((msg + "\r\n").toUtf8());
   ts.waitForBytesWritten();
+}
+
+void nscontroller_cfw::click(QString button) {
+  send("click " + button);
 }
 
 void nscontroller_cfw::press(QString button) {
-  ts.write(("press " + button + "\r\n").toUtf8());
-  ts.waitForBytesWritten();
+  send("press " + button);
 }
 
 void nscontroller_cfw::release(QString button) {
-  ts.write(("release " + button + "\r\n").toUtf8());
-  ts.waitForBytesWritten();
+  send("release " + button);
+}
+
+QString nscontroller_cfw::tohex(short n) {
+  return QString(n < 0 ? "-" : "") + "0x" + QString::number(abs(n), 16);
 }
 
 void nscontroller_cfw::LStick(short x, short y) {
   LS_X = x;
   LS_Y = y;
-  QString xsign = x < 0 ? "-" : "";
-  QString ysign = y < 0 ? "-" : "";
-  QString output = "setStick LEFT " + xsign + "0x" + QString::number(abs(x), 16) + " " + ysign + "0x" + QString::number(abs(y), 16) + "\r\n";
-  ts.write(output.toUtf8());
-  ts.waitForBytesWritten();
+  send("setStick LEFT " + tohex(x) + " " + tohex(y));
 }
 
 void nscontroller_cfw::RStick(short x, short y) {
   RS_X = x;
   RS_Y = y;
-  QString xsign = x < 0 ? "-" : "";
-  QString ysign = y < 0 ? "-" : "";
-  QString output = "setStick RIGHT " + xsign + "0x" + QString::number(abs(x), 16) + " " + ysign + "0x" + QString::number(abs(y), 16) + "\r\n";
-  ts.write(output.toUtf8());
-  ts.waitForBytesWritten();
+  send("setStick RIGHT " + tohex(x) + " " + tohex(y));
 }
 
 QString nscontroller_cfw::peek(uint offset, uint size) {
-  QString output = "peek 0x" + QString::number(offset, 16) + " " + QString::number(size) + "\r\n";
-  ts.write(output.toUtf8());
-  ts.waitForBytesWritten();
+  send("peek 0x" + QString::number(offset, 16) + " " + QString::number(size));
   ts.waitForReadyRead();
   return "0x" + ts.readAll();
 }
 
 QString nscontroller_cfw::peek(QString offset, QString size) {
-  QString output = "peek 0x" + offset + " " + size + "\r\n";
-  ts.write(output.toUtf8());
-  ts.waitForBytesWritten();
+  send("peek 0x" + offset + " " + size);
   ts.waitForReadyRead();
   return "0x" + ts.readAll();
 }
 
 void nscontroller_cfw::poke(uint offset, QByteArray data) {
-  ts.write(("poke 0x" + QString::number(offset, 16) + " 0x" + data.toHex(0) + "\r\n").toUtf8());
-  ts.waitForBytesWritten();
+  send("poke 0x" + QString::number(offset, 16) + " 0x" + data.toHex(0));
 }
 
 void nscontroller_cfw::poke(QString offset, QString data) {
-  ts.write(("poke 0x" + offset + " " + data + "\r\n").toUtf8());
-  ts.waitForBytesWritten();
+  send("poke 0x" + offset + " " + data);
 }
 
 void nscontroller_cfw::close() {
