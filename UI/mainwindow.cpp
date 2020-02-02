@@ -25,19 +25,14 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   QSettings setting;
-  RefreshDeviceList();
-  connect(ui->B_Refresh, SIGNAL(released()), this, SLOT(RefreshDeviceList()));
-  connect(ui->B_Connect, SIGNAL(released()), this, SLOT(Connect()));
-  connect(ui->B_Disconnect, SIGNAL(released()), this, SLOT(Disconnect()));
-  connect(ui->B_Read, SIGNAL(released()), this, SLOT(Read()));
-  connect(ui->B_Write, SIGNAL(released()), this, SLOT(Write()));
+  on_B_Refresh_clicked();
   ui->B_Disconnect->setEnabled(false);
   setMinimumHeight(135);
   setMaximumHeight(135);
   ui->ipaddress->setText(setting.value("settings/ip", "192.168.0.1").toString());
   ui->ramaddress->setText(setting.value("settings/ramaddress", "0").toString());
   ui->datasize->setText(setting.value("settings/datasize", "8").toString());
-  Connect();
+  on_B_Connect_clicked();
   if (ui->B_Connect->isEnabled())
     ui->RB_Socket->setChecked(true);
 }
@@ -46,7 +41,7 @@ MainWindow::~MainWindow() {
   delete ui;
 }
 
-void MainWindow::RefreshDeviceList() {
+void MainWindow::on_B_Refresh_clicked() {
   QSettings setting;
   QString last_device = setting.value("settings/serialport", "").toString();
   ui->devicelist->clear();
@@ -58,7 +53,7 @@ void MainWindow::RefreshDeviceList() {
     }
 }
 
-void MainWindow::Connect() {
+void MainWindow::on_B_Connect_clicked() {
   QSettings setting;
   if (ui->RB_Serial->isChecked()) {
     if (!c.connect(ui->devicelist->currentText()))
@@ -79,7 +74,7 @@ void MainWindow::Connect() {
   ui->RB_Socket->setEnabled(false);
 }
 
-void MainWindow::Disconnect() {
+void MainWindow::on_B_Disconnect_clicked() {
   if (ui->RB_Serial->isChecked())
     c.close();
   else
@@ -95,7 +90,7 @@ void MainWindow::Disconnect() {
   ui->RB_Socket->setEnabled(true);
 }
 
-void MainWindow::Read() {
+void MainWindow::on_B_Read_clicked() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
   QSettings setting;
@@ -103,7 +98,7 @@ void MainWindow::Read() {
   setting.setValue("settings/ramaddress", ui->ramaddress->text());
 }
 
-void MainWindow::Write() {
+void MainWindow::on_B_Write_clicked() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
   QSettings setting;

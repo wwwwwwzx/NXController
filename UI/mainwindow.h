@@ -43,11 +43,11 @@ class MainWindow : public QMainWindow {
   inputtable keytable;
 
  private slots:
-  void RefreshDeviceList();
-  void Connect();
-  void Disconnect();
-  void Write();
-  void Read();
+  void on_B_Refresh_clicked();
+  void on_B_Connect_clicked();
+  void on_B_Disconnect_clicked();
+  void on_B_Write_clicked();
+  void on_B_Read_clicked();
 
  private:
   Ui::MainWindow* ui;
