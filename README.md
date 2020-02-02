@@ -15,9 +15,12 @@
 - Via wifi connection: [sys-botbase](https://github.com/olliz0r/sys-botbase)  
   - Modified console only  
   - Read and write memory  
-![](https://i.imgur.com/axVMUc9.png)  
-Similar configuration as yuzu:  
-![](https://i.imgur.com/UqwOnHz.png)
+    ![](https://i.imgur.com/axVMUc9.png)  
+  
+
+Default configuration is the same as yuzu:  
+    ![](https://imgur.com/7CS52T7.png)
+
 ## To do
 - Add scripts for botting
 - Allow user to change configuration

@@ -43,7 +43,7 @@ after_build:
     - cmd: xcopy /I bin\atmosphere\contents\430000000000000B\exefs.nsp NXController-windows\atmosphere\contents\430000000000000B\
     - cmd: 7z a NXController-%OS%.zip NXController-windows\
     # Linux
-    - sh: zip -r NXController-linux.zip NXController bin\Joystick.hex bin\atmosphere\contents\430000000000000B\exefs.nsp
+    - sh: zip -r NXController-linux.zip NXController bin
     
 artifacts:
 - path: NXController-%OS%.zip
