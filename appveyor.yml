@@ -39,9 +39,11 @@ after_build:
     - cmd: del NXController-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll NXController-windows\platforms\
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll NXController-windows\styles\
+    - cmd: xcopy /I bin\Joystick.hex NXController-windows\
+    - cmd: xcopy /I bin\atmosphere\contents\430000000000000B\exefs.nsp NXController-windows\atmosphere\contents\430000000000000B\
     - cmd: 7z a NXController-%OS%.zip NXController-windows\
     # Linux
-    - sh: zip -r NXController-linux.zip NXController
+    - sh: zip -r NXController-linux.zip NXController bin\Joystick.hex bin\atmosphere\contents\430000000000000B\exefs.nsp
     
 artifacts:
 - path: NXController-%OS%.zip

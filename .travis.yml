@@ -15,7 +15,7 @@ script:
 
 before_deploy:
   - /usr/local/Cellar/qt/5.13.2/bin/macdeployqt NXController.app -dmg -verbose=2
-  - zip -r NXController-macOS.zip NXController.dmg
+  - zip -r NXController-macOS.zip NXController.dmg bin\Joystick.hex bin\atmosphere\contents\430000000000000B\exefs.nsp
 
 deploy:
   provider: releases
