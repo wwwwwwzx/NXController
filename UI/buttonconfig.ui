@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Button Settings</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -63,8 +63,8 @@
   <widget class="QLineEditHotKey" name="K_A">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>200</y>
+     <x>590</x>
+     <y>195</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -76,8 +76,8 @@
   <widget class="QLineEditHotKey" name="K_B">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>250</y>
+     <x>535</x>
+     <y>245</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -89,8 +89,8 @@
   <widget class="QLineEditHotKey" name="K_X">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>150</y>
+     <x>535</x>
+     <y>145</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -102,8 +102,294 @@
   <widget class="QLineEditHotKey" name="K_Y">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>200</y>
+     <x>480</x>
+     <y>195</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_RS_Right">
+   <property name="geometry">
+    <rect>
+     <x>495</x>
+     <y>292</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_RS_Down">
+   <property name="geometry">
+    <rect>
+     <x>442</x>
+     <y>350</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_RS_Left">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>292</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_RS_Up">
+   <property name="geometry">
+    <rect>
+     <x>442</x>
+     <y>240</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_D_Left">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>290</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_D_Down">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>330</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_D_Right">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>290</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_D_Up">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>260</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_LS_Left">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>195</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_LS_Right">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>195</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_LS_Up">
+   <property name="geometry">
+    <rect>
+     <x>155</x>
+     <y>140</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_LS_Down">
+   <property name="geometry">
+    <rect>
+     <x>155</x>
+     <y>250</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_RS">
+   <property name="geometry">
+    <rect>
+     <x>442</x>
+     <y>292</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_LS">
+   <property name="geometry">
+    <rect>
+     <x>155</x>
+     <y>195</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_Home">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>195</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_Capture">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>195</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_Plus">
+   <property name="geometry">
+    <rect>
+     <x>437</x>
+     <y>139</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_Minus">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>139</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_L">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>70</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_R">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>70</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_ZR">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>50</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_ZL">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>50</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -118,12 +404,34 @@
   <zorder>K_B</zorder>
   <zorder>K_X</zorder>
   <zorder>K_Y</zorder>
+  <zorder>K_RS_Right</zorder>
+  <zorder>K_RS_Down</zorder>
+  <zorder>K_RS_Left</zorder>
+  <zorder>K_RS_Up</zorder>
+  <zorder>K_D_Left</zorder>
+  <zorder>K_D_Down</zorder>
+  <zorder>K_D_Right</zorder>
+  <zorder>K_D_Up</zorder>
+  <zorder>K_LS_Left</zorder>
+  <zorder>K_LS_Right</zorder>
+  <zorder>K_LS_Up</zorder>
+  <zorder>K_LS_Down</zorder>
+  <zorder>K_RS</zorder>
+  <zorder>K_LS</zorder>
+  <zorder>K_Home</zorder>
+  <zorder>K_Capture</zorder>
+  <zorder>K_Plus</zorder>
+  <zorder>K_Minus</zorder>
+  <zorder>K_L</zorder>
+  <zorder>K_R</zorder>
+  <zorder>K_ZR</zorder>
+  <zorder>K_ZL</zorder>
  </widget>
  <customwidgets>
   <customwidget>
    <class>QLineEditHotKey</class>
    <extends>QLineEdit</extends>
-   <header>UI/control/qlineedithotkey.h</header>
+   <header>UI/Control/qlineedithotkey.h</header>
   </customwidget>
  </customwidgets>
  <resources>

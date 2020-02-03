@@ -36,10 +36,33 @@ class buttonconfig : public QDialog {
  private slots:
   void on_buttonBox_accepted();
 
-  void on_K_A_textChanged(const QString& arg1);
-  void on_K_B_textChanged(const QString& arg1);
-  void on_K_X_textChanged(const QString& arg1);
-  void on_K_Y_textChanged(const QString& arg1);
+  void on_K_A_textChanged(const QString& newtext);
+  void on_K_B_textChanged(const QString& newtext);
+  void on_K_X_textChanged(const QString& newtext);
+  void on_K_Y_textChanged(const QString& newtext);
+  void on_K_L_textChanged(const QString& newtext);
+  void on_K_R_textChanged(const QString& newtext);
+  void on_K_ZL_textChanged(const QString& newtext);
+  void on_K_ZR_textChanged(const QString& newtext);
+  void on_K_LS_textChanged(const QString& newtext);
+  void on_K_RS_textChanged(const QString& newtext);
+  void on_K_Home_textChanged(const QString& newtext);
+  void on_K_Capture_textChanged(const QString& newtext);
+  void on_K_Plus_textChanged(const QString& newtext);
+  void on_K_Minus_textChanged(const QString& newtext);
+
+  void on_K_D_Left_textChanged(const QString& newtext);
+  void on_K_D_Right_textChanged(const QString& newtext);
+  void on_K_D_Up_textChanged(const QString& newtext);
+  void on_K_D_Down_textChanged(const QString& newtext);
+  void on_K_LS_Left_textChanged(const QString& newtext);
+  void on_K_LS_Right_textChanged(const QString& newtext);
+  void on_K_LS_Up_textChanged(const QString& newtext);
+  void on_K_LS_Down_textChanged(const QString& newtext);
+  void on_K_RS_Left_textChanged(const QString& newtext);
+  void on_K_RS_Right_textChanged(const QString& newtext);
+  void on_K_RS_Up_textChanged(const QString& newtext);
+  void on_K_RS_Down_textChanged(const QString& newtext);
 
  private:
   Ui::buttonconfig* ui;

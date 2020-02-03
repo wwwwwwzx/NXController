@@ -36,10 +36,10 @@ struct inputtable {
   int Plus = Qt::Key_N;
   int Minus = Qt::Key_M;
 
-  int D_Up = Qt::Key_T;
-  int D_Down = Qt::Key_G;
   int D_Left = Qt::Key_F;
   int D_Right = Qt::Key_H;
+  int D_Up = Qt::Key_T;
+  int D_Down = Qt::Key_G;
   int LS_Left = Qt::Key_Left;
   int LS_Right = Qt::Key_Right;
   int LS_Up = Qt::Key_Up;
