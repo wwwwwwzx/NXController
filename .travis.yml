@@ -1,8 +1,6 @@
 language: cpp
 
-jobs:
-  include:
-    - os: osx
+os: osx
 
 install:
   - brew update
@@ -10,7 +8,7 @@ install:
   - brew link --force qt5
 
 script:
-  - qmake NXController.pro
+  - qmake NXController.pro -spec macx-clang && make qmake_all
   - make -j $(sysctl -n hw.physicalcpu)
 
 before_deploy:
