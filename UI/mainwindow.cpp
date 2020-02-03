@@ -64,6 +64,7 @@ void MainWindow::on_B_Connect_clicked() {
   } else {
     if (!b.connect(ui->ipaddress->text()))
       return;
+    b.configuresleep(0, 50);  // Default setting
     setMaximumHeight(210);
     setMinimumHeight(210);
     setting.setValue("settings/ip", ui->ipaddress->text());
@@ -79,8 +80,10 @@ void MainWindow::on_B_Connect_clicked() {
 void MainWindow::on_B_Disconnect_clicked() {
   if (ui->RB_Serial->isChecked())
     c.close();
-  else
+  else {
+    b.detachController();
     b.close();
+  }
   setMinimumHeight(135);
   setMaximumHeight(135);
   resize(380, 135);

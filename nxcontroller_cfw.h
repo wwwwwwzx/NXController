@@ -28,6 +28,8 @@ class nxcontroller_cfw {
   void press(QString button);
   void click(QString button);
   void release(QString button);
+  void detachController();
+  void configuresleep(int mainLoopSleepTime, int buttonClickSleepTime);
   void LStick(short x, short y);
   void RStick(short x, short y);
   QString peek(uint offset, uint size);

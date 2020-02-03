@@ -45,6 +45,15 @@ void nxcontroller_cfw::release(QString button) {
   send("release " + button);
 }
 
+void nxcontroller_cfw::detachController() {
+  send("detachController");
+}
+
+void nxcontroller_cfw::configuresleep(int mainLoopSleepTime, int buttonClickSleepTime) {
+  send("configure mainLoopSleepTime " + QString::number(mainLoopSleepTime));
+  send("configure buttonClickSleepTime " + QString::number(buttonClickSleepTime));
+}
+
 QString nxcontroller_cfw::tohex(short n) {
   return QString(n < 0 ? "-" : "") + "0x" + QString::number(abs(n), 16);
 }
