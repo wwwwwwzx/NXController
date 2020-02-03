@@ -11,16 +11,17 @@
 - Via serial port: [Switch-Fightstick](https://github.com/wwwwwwzx/Switch-Fightstick)  
   - Arduino UNO R3 or other boards, check [here](https://github.com/shinyquagsire23/Switch-Fightstick/blob/master/README.md)  
   - USB to TTL/Serial module (FT232RL)  
-![](https://i.imgur.com/dOYtwCx.png)
+![](https://imgur.com/l5hwBk4.png)
 - Via wifi connection: [sys-botbase](https://github.com/olliz0r/sys-botbase)  
   - Modified console only  
   - Read and write memory  
-    ![](https://i.imgur.com/axVMUc9.png)  
+    ![img](https://i.imgur.com/7xM4CQu.png)
   
 
-Default configuration is the same as yuzu:  
-    ![](https://imgur.com/7CS52T7.png)
+
+## Customize your button settings
+Default button configuration is the same as yuzu:  
+    ![](https://i.imgur.com/chgS50t.png)
 
 ## To do
 - Add scripts for botting
-- Allow user to change configuration
