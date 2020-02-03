@@ -20,36 +20,37 @@
 #define INPUTTABLE_H
 #include <QKeyEvent>
 
-class inputtable {
- public:
-  inputtable();
-  Qt::Key A = Qt::Key_A;
-  Qt::Key B = Qt::Key_S;
-  Qt::Key X = Qt::Key_Z;
-  Qt::Key Y = Qt::Key_X;
-  Qt::Key L = Qt::Key_Q;
-  Qt::Key R = Qt::Key_W;
-  Qt::Key ZL = Qt::Key_1;
-  Qt::Key ZR = Qt::Key_2;
-  Qt::Key LS = Qt::Key_3;
-  Qt::Key RS = Qt::Key_4;
-  Qt::Key Home = Qt::Key_B;
-  Qt::Key Capture = Qt::Key_V;
-  Qt::Key Plus = Qt::Key_N;
-  Qt::Key Minus = Qt::Key_M;
+struct inputtable {
+  int A = Qt::Key_A;
+  int B = Qt::Key_S;
+  int X = Qt::Key_Z;
+  int Y = Qt::Key_X;
+  int L = Qt::Key_Q;
+  int R = Qt::Key_W;
+  int ZL = Qt::Key_1;
+  int ZR = Qt::Key_2;
+  int LS = Qt::Key_3;
+  int RS = Qt::Key_4;
+  int Home = Qt::Key_B;
+  int Capture = Qt::Key_V;
+  int Plus = Qt::Key_N;
+  int Minus = Qt::Key_M;
 
-  Qt::Key D_Up = Qt::Key_T;
-  Qt::Key D_Down = Qt::Key_G;
-  Qt::Key D_Left = Qt::Key_F;
-  Qt::Key D_Right = Qt::Key_H;
-  Qt::Key LS_Left = Qt::Key_Left;
-  Qt::Key LS_Right = Qt::Key_Right;
-  Qt::Key LS_Up = Qt::Key_Up;
-  Qt::Key LS_Down = Qt::Key_Down;
-  Qt::Key RS_Left = Qt::Key_J;
-  Qt::Key RS_Right = Qt::Key_L;
-  Qt::Key RS_Up = Qt::Key_I;
-  Qt::Key RS_Down = Qt::Key_K;
+  int D_Up = Qt::Key_T;
+  int D_Down = Qt::Key_G;
+  int D_Left = Qt::Key_F;
+  int D_Right = Qt::Key_H;
+  int LS_Left = Qt::Key_Left;
+  int LS_Right = Qt::Key_Right;
+  int LS_Up = Qt::Key_Up;
+  int LS_Down = Qt::Key_Down;
+  int RS_Left = Qt::Key_J;
+  int RS_Right = Qt::Key_L;
+  int RS_Up = Qt::Key_I;
+  int RS_Down = Qt::Key_K;
 };
+Q_DECLARE_METATYPE(inputtable)
 
+QDataStream& operator<<(QDataStream& out, const inputtable& v);
+QDataStream& operator>>(QDataStream& in, inputtable& v);
 #endif  // INPUTTABLE_H

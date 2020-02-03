@@ -16,20 +16,34 @@
  * along with this program; If not, see <https://www.gnu.org/licenses/>.
  */
 
+#ifndef BUTTONCONFIG_H
+#define BUTTONCONFIG_H
+
+#include <QDialog>
 #include "inputtable.h"
 
-QDataStream& operator<<(QDataStream& out, const inputtable& v) {
-  out << v.A << v.B << v.X << v.Y << v.L << v.R << v.ZL << v.ZR << v.LS << v.RS << v.Home << v.Capture << v.Plus << v.Minus;
-  out << v.D_Up << v.D_Down << v.D_Left << v.D_Right;
-  out << v.LS_Up << v.LS_Down << v.LS_Left << v.LS_Right;
-  out << v.RS_Up << v.RS_Down << v.RS_Left << v.RS_Right;
-  return out;
+namespace Ui {
+  class buttonconfig;
 }
 
-QDataStream& operator>>(QDataStream& in, inputtable& v) {
-  in >> v.A >> v.B >> v.X >> v.Y >> v.L >> v.R >> v.ZL >> v.ZR >> v.LS >> v.RS >> v.Home >> v.Capture >> v.Plus >> v.Minus;
-  in >> v.D_Up >> v.D_Down >> v.D_Left >> v.D_Right;
-  in >> v.LS_Up >> v.LS_Down >> v.LS_Left >> v.LS_Right;
-  in >> v.RS_Up >> v.RS_Down >> v.RS_Left >> v.RS_Right;
-  return in;
-}
+class buttonconfig : public QDialog {
+  Q_OBJECT
+
+ public:
+  explicit buttonconfig(QWidget* parent = nullptr);
+  ~buttonconfig();
+
+ private slots:
+  void on_buttonBox_accepted();
+
+  void on_K_A_textChanged(const QString& arg1);
+  void on_K_B_textChanged(const QString& arg1);
+  void on_K_X_textChanged(const QString& arg1);
+  void on_K_Y_textChanged(const QString& arg1);
+
+ private:
+  Ui::buttonconfig* ui;
+  inputtable config;
+};
+
+#endif  // BUTTONCONFIG_H

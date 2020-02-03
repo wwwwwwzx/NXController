@@ -48,8 +48,10 @@ class MainWindow : public QMainWindow {
   void on_B_Disconnect_clicked();
   void on_B_Write_clicked();
   void on_B_Read_clicked();
+  void on_B_Settings_clicked();
 
  private:
+  void loadbuttonconfig();
   Ui::MainWindow* ui;
 };
 #endif  // MAINWINDOW_H
