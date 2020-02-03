@@ -43,13 +43,15 @@ class MainWindow : public QMainWindow {
   inputtable keytable;
 
  private slots:
-  void RefreshDeviceList();
-  void Connect();
-  void Disconnect();
-  void Write();
-  void Read();
+  void on_B_Refresh_clicked();
+  void on_B_Connect_clicked();
+  void on_B_Disconnect_clicked();
+  void on_B_Write_clicked();
+  void on_B_Read_clicked();
+  void on_B_Settings_clicked();
 
  private:
+  void loadbuttonconfig();
   Ui::MainWindow* ui;
 };
 #endif  // MAINWINDOW_H

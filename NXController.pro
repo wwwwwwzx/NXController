@@ -14,10 +14,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-RC_ICONS = icons/NXController.ico
-ICON = icons/NXController.icns
+RC_ICONS = images/NXController.ico
+ICON = images/NXController.icns
 
 SOURCES += \
+    UI/Control/qlineedithotkey.cpp \
+    UI/buttonconfig.cpp \
     UI/inputtable.cpp \
     UI/main.cpp \
     UI/mainwindow.cpp \
@@ -25,15 +27,21 @@ SOURCES += \
     nxcontroller_cfw.cpp
 
 HEADERS += \
+    UI/Control/qlineedithotkey.h \
+    UI/buttonconfig.h \
     UI/inputtable.h \
     UI/mainwindow.h \
     nxcontroller.h \
     nxcontroller_cfw.h
 
 FORMS += \
+    UI/buttonconfig.ui \
     UI/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc

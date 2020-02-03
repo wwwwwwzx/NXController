@@ -18,4 +18,18 @@
 
 #include "inputtable.h"
 
-inputtable::inputtable() {}
+QDataStream& operator<<(QDataStream& out, const inputtable& v) {
+  out << v.A << v.B << v.X << v.Y << v.L << v.R << v.ZL << v.ZR << v.LS << v.RS << v.Home << v.Capture << v.Plus << v.Minus;
+  out << v.D_Up << v.D_Down << v.D_Left << v.D_Right;
+  out << v.LS_Up << v.LS_Down << v.LS_Left << v.LS_Right;
+  out << v.RS_Up << v.RS_Down << v.RS_Left << v.RS_Right;
+  return out;
+}
+
+QDataStream& operator>>(QDataStream& in, inputtable& v) {
+  in >> v.A >> v.B >> v.X >> v.Y >> v.L >> v.R >> v.ZL >> v.ZR >> v.LS >> v.RS >> v.Home >> v.Capture >> v.Plus >> v.Minus;
+  in >> v.D_Up >> v.D_Down >> v.D_Left >> v.D_Right;
+  in >> v.LS_Up >> v.LS_Down >> v.LS_Left >> v.LS_Right;
+  in >> v.RS_Up >> v.RS_Down >> v.RS_Left >> v.RS_Right;
+  return in;
+}
