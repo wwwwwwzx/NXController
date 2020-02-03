@@ -24,7 +24,7 @@
 
 buttonconfig::buttonconfig(QWidget* parent) : QDialog(parent), ui(new Ui::buttonconfig) {
   ui->setupUi(this);
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   auto table = setting.value("settings/keyconfig", qVariantFromValue(config));
   if (table.isValid())
     config = table.value<inputtable>();
@@ -62,7 +62,7 @@ buttonconfig::~buttonconfig() {
 }
 
 void buttonconfig::on_buttonBox_accepted() {
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   setting.setValue("settings/keyconfig", qVariantFromValue(config));
 }
 

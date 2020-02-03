@@ -26,7 +26,7 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   qRegisterMetaTypeStreamOperators<inputtable>("inputtable");
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   on_B_Refresh_clicked();
   ui->B_Disconnect->setEnabled(false);
   setMinimumHeight(135);
@@ -44,7 +44,7 @@ MainWindow::~MainWindow() {
   delete ui;
 }
 void MainWindow::on_B_Refresh_clicked() {
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   QString last_device = setting.value("settings/serialport", "").toString();
   ui->devicelist->clear();
   Q_FOREACH (QSerialPortInfo port, QSerialPortInfo::availablePorts())
@@ -56,7 +56,7 @@ void MainWindow::on_B_Refresh_clicked() {
 }
 
 void MainWindow::on_B_Connect_clicked() {
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   if (ui->RB_Serial->isChecked()) {
     if (!c.connect(ui->devicelist->currentText()))
       return;
@@ -98,7 +98,7 @@ void MainWindow::on_B_Disconnect_clicked() {
 void MainWindow::on_B_Read_clicked() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   ui->data->setText(b.peek(ui->ramaddress->text(), ui->datasize->text()));
   setting.setValue("settings/ramaddress", ui->ramaddress->text());
 }
@@ -106,7 +106,7 @@ void MainWindow::on_B_Read_clicked() {
 void MainWindow::on_B_Write_clicked() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   b.poke(ui->ramaddress->text(), ui->data->text());
   setting.setValue("settings/datasize", ui->datasize->text());
 }
@@ -324,7 +324,7 @@ void MainWindow::on_B_Settings_clicked() {
 }
 
 void MainWindow::loadbuttonconfig() {
-  QSettings setting("config.ini", QSettings::IniFormat);
+  QSettings setting;
   auto table = setting.value("settings/keyconfig", qVariantFromValue(keytable));
   if (table.isValid())
     keytable = table.value<inputtable>();
