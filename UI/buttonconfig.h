@@ -34,6 +34,9 @@ class buttonconfig : public QDialog {
   ~buttonconfig();
 
  private slots:
+  void loadsettings();
+
+  void on_B_Default_clicked();
   void on_buttonBox_accepted();
 
   void on_K_A_textChanged(const QString& newtext);

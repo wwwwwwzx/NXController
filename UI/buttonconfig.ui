@@ -16,9 +16,9 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>330</x>
      <y>510</y>
-     <width>161</width>
+     <width>160</width>
      <height>32</height>
     </rect>
    </property>
@@ -476,6 +476,19 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QPushButton" name="B_Default">
+   <property name="geometry">
+    <rect>
+     <x>248</x>
+     <y>510</y>
+     <width>80</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </widget>
   <zorder>L_pro</zorder>
   <zorder>buttonBox</zorder>
   <zorder>K_A</zorder>
@@ -504,6 +517,7 @@
   <zorder>K_R</zorder>
   <zorder>K_ZR</zorder>
   <zorder>K_ZL</zorder>
+  <zorder>B_Default</zorder>
  </widget>
  <customwidgets>
   <customwidget>

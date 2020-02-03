@@ -28,6 +28,25 @@ buttonconfig::buttonconfig(QWidget* parent) : QDialog(parent), ui(new Ui::button
   auto table = setting.value("settings/keyconfig", qVariantFromValue(config));
   if (table.isValid())
     config = table.value<inputtable>();
+  loadsettings();
+}
+
+buttonconfig::~buttonconfig() {
+  delete ui;
+}
+
+void buttonconfig::on_buttonBox_accepted() {
+  QSettings setting;
+  setting.setValue("settings/keyconfig", qVariantFromValue(config));
+}
+
+void buttonconfig::on_B_Default_clicked() {
+  inputtable newconfig;
+  config = newconfig;
+  loadsettings();
+}
+
+void buttonconfig::loadsettings() {
   ui->K_A->setText(QKeySequence(config.A).toString(QKeySequence::NativeText));
   ui->K_B->setText(QKeySequence(config.B).toString(QKeySequence::NativeText));
   ui->K_X->setText(QKeySequence(config.X).toString(QKeySequence::NativeText));
@@ -55,15 +74,6 @@ buttonconfig::buttonconfig(QWidget* parent) : QDialog(parent), ui(new Ui::button
   ui->K_RS_Down->setText(QKeySequence(config.RS_Down).toString(QKeySequence::NativeText));
   ui->K_RS_Left->setText(QKeySequence(config.RS_Left).toString(QKeySequence::NativeText));
   ui->K_RS_Right->setText(QKeySequence(config.RS_Right).toString(QKeySequence::NativeText));
-}
-
-buttonconfig::~buttonconfig() {
-  delete ui;
-}
-
-void buttonconfig::on_buttonBox_accepted() {
-  QSettings setting;
-  setting.setValue("settings/keyconfig", qVariantFromValue(config));
 }
 
 void buttonconfig::on_K_A_textChanged(const QString& newtext) {
