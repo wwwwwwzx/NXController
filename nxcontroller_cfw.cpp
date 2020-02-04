@@ -24,8 +24,9 @@
 nxcontroller_cfw::nxcontroller_cfw() {}
 
 bool nxcontroller_cfw::connect(QString IP) {
-  ts.connectToHost(QHostAddress(IP), 6000);
-  return ts.open(QIODevice::ReadWrite);
+  ts.connectToHost(QHostAddress(IP), 6000, QIODevice::ReadWrite);
+  ts.waitForConnected(2000);
+  return ts.state() == QAbstractSocket::ConnectedState;
 }
 
 void nxcontroller_cfw::send(QString msg) {
@@ -72,13 +73,13 @@ void nxcontroller_cfw::RStick(short x, short y) {
 
 QString nxcontroller_cfw::peek(uint offset, uint size) {
   send("peek 0x" + QString::number(offset, 16) + " " + QString::number(size));
-  ts.waitForReadyRead();
+  ts.waitForReadyRead(3000);
   return "0x" + ts.readAll();
 }
 
 QString nxcontroller_cfw::peek(QString offset, QString size) {
   send("peek 0x" + offset + " " + size);
-  ts.waitForReadyRead();
+  ts.waitForReadyRead(3000);
   return "0x" + ts.readAll();
 }
 

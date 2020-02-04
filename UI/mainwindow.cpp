@@ -20,6 +20,7 @@
 #include "ui_mainwindow.h"
 #include "buttonconfig.h"
 #include <QSettings>
+#include <QMessageBox>
 #include <QSerialPortInfo>
 #include <QKeyEvent>
 
@@ -38,6 +39,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   on_B_Connect_clicked();
   if (ui->B_Connect->isEnabled())
     ui->RB_Socket->setChecked(true);
+  if (ui->ipaddress->text() != "192.168.0.1")
+    on_B_Connect_clicked();  // Try to connect sys-botbase
 }
 
 MainWindow::~MainWindow() {
@@ -62,8 +65,12 @@ void MainWindow::on_B_Connect_clicked() {
       return;
     setting.setValue("settings/serialport", ui->devicelist->currentText());
   } else {
-    if (!b.connect(ui->ipaddress->text()))
+    if (!b.connect(ui->ipaddress->text())) {
+      QMessageBox MB;
+      MB.critical(0, "Error", "Connection failed");
+      MB.setFixedSize(500, 180);
       return;
+    }
     b.configuresleep(0, 50);  // Default setting
     setMaximumHeight(210);
     setMinimumHeight(210);
@@ -101,6 +108,7 @@ void MainWindow::on_B_Read_clicked() {
   QSettings setting;
   ui->data->setText(b.peek(ui->ramaddress->text(), ui->datasize->text()));
   setting.setValue("settings/ramaddress", ui->ramaddress->text());
+  setting.setValue("settings/datasize", ui->datasize->text());
 }
 
 void MainWindow::on_B_Write_clicked() {
@@ -108,7 +116,7 @@ void MainWindow::on_B_Write_clicked() {
     return;
   QSettings setting;
   b.poke(ui->ramaddress->text(), ui->data->text());
-  setting.setValue("settings/datasize", ui->datasize->text());
+  setting.setValue("settings/ramaddress", ui->ramaddress->text());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {

@@ -35,7 +35,7 @@ class nxcontroller_cfw {
   QString peek(uint offset, uint size);
   QString peek(QString offset, QString size);
   void poke(uint offset, QByteArray data);
-  void poke(QString offset, QString size);
+  void poke(QString offset, QString data);
   short LS_X = 0, LS_Y = 0, RS_X = 0, RS_Y = 0;
   void close();
 
