@@ -73,14 +73,14 @@ void nxcontroller_cfw::RStick(short x, short y) {
 
 QString nxcontroller_cfw::peek(uint offset, uint size) {
   send("peek 0x" + QString::number(offset, 16) + " " + QString::number(size));
-  ts.waitForReadyRead(3000);
-  return "0x" + ts.readAll();
+  ts.waitForReadyRead(10000);
+  return "0x" + ts.readLine();
 }
 
 QString nxcontroller_cfw::peek(QString offset, QString size) {
   send("peek 0x" + offset + " " + size);
-  ts.waitForReadyRead(3000);
-  return "0x" + ts.readAll();
+  ts.waitForReadyRead(10000);
+  return "0x" + ts.readLine();
 }
 
 void nxcontroller_cfw::poke(uint offset, QByteArray data) {

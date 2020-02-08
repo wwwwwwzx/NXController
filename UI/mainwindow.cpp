@@ -106,9 +106,20 @@ void MainWindow::on_B_Read_clicked() {
   if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
     return;
   QSettings setting;
-  ui->data->setText(b.peek(ui->ramaddress->text(), ui->datasize->text()));
+  QString datastring = b.peek(ui->ramaddress->text(), ui->datasize->text());
+  ui->data->setText(datastring);
   setting.setValue("settings/ramaddress", ui->ramaddress->text());
   setting.setValue("settings/datasize", ui->datasize->text());
+  if (QGuiApplication::keyboardModifiers() == Qt::ShiftModifier) {
+    int size = (datastring.count() - 2) / 2;
+    QByteArray ay(size, 0);
+    for (int i = 0; i < size; i++)
+      ay[i] = datastring.mid(i * 2 + 2, 2).toInt(nullptr, 16);
+    QFile file("dump_heap_0x" + ui->ramaddress->text() + "_" + ui->datasize->text() + ".bin");
+    file.open(QIODevice::WriteOnly);
+    file.write(ay);
+    file.close();
+  }
 }
 
 void MainWindow::on_B_Write_clicked() {
