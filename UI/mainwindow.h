@@ -59,6 +59,5 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow* ui;
   bool isUsingMouse, isDisconnected = true;
   void showhidebuttons();
-  int Prev_X, Prev_Y;
 };
 #endif  // MAINWINDOW_H

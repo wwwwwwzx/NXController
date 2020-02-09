@@ -489,6 +489,67 @@
     <string>Default</string>
    </property>
   </widget>
+  <widget class="QLineEditHotKey" name="K_Mouse_Left">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>460</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_Mouse_Middle">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>460</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEditHotKey" name="K_Mouse_Right">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>460</y>
+     <width>40</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="L_Mouse">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>440</y>
+     <width>161</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mouse: Left Middle Right</string>
+   </property>
+  </widget>
   <zorder>L_pro</zorder>
   <zorder>buttonBox</zorder>
   <zorder>K_A</zorder>
@@ -518,6 +579,10 @@
   <zorder>K_ZR</zorder>
   <zorder>K_ZL</zorder>
   <zorder>B_Default</zorder>
+  <zorder>K_Mouse_Left</zorder>
+  <zorder>K_Mouse_Middle</zorder>
+  <zorder>K_Mouse_Right</zorder>
+  <zorder>L_Mouse</zorder>
  </widget>
  <customwidgets>
   <customwidget>

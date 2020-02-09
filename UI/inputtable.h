@@ -48,6 +48,10 @@ struct inputtable {
   int RS_Right = Qt::Key_L;
   int RS_Up = Qt::Key_I;
   int RS_Down = Qt::Key_K;
+
+  int Mouse_Left = Qt::Key_Z;
+  int Mouse_Right = Qt::Key_X;
+  int Mouse_Middle = Qt::Key_S;
 };
 Q_DECLARE_METATYPE(inputtable)
 

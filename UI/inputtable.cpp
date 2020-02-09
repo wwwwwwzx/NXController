@@ -23,6 +23,7 @@ QDataStream& operator<<(QDataStream& out, const inputtable& v) {
   out << v.D_Up << v.D_Down << v.D_Left << v.D_Right;
   out << v.LS_Up << v.LS_Down << v.LS_Left << v.LS_Right;
   out << v.RS_Up << v.RS_Down << v.RS_Left << v.RS_Right;
+  out << v.Mouse_Left << v.Mouse_Right << v.Mouse_Middle;
   return out;
 }
 
@@ -31,5 +32,6 @@ QDataStream& operator>>(QDataStream& in, inputtable& v) {
   in >> v.D_Up >> v.D_Down >> v.D_Left >> v.D_Right;
   in >> v.LS_Up >> v.LS_Down >> v.LS_Left >> v.LS_Right;
   in >> v.RS_Up >> v.RS_Down >> v.RS_Left >> v.RS_Right;
+  in >> v.Mouse_Left >> v.Mouse_Right >> v.Mouse_Middle;
   return in;
 }

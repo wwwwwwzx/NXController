@@ -67,6 +67,10 @@ class buttonconfig : public QDialog {
   void on_K_RS_Up_textChanged(const QString& newtext);
   void on_K_RS_Down_textChanged(const QString& newtext);
 
+  void on_K_Mouse_Left_textChanged(const QString& newtext);
+  void on_K_Mouse_Right_textChanged(const QString& newtext);
+  void on_K_Mouse_Middle_textChanged(const QString& newtext);
+
  private:
   Ui::buttonconfig* ui;
   inputtable config;

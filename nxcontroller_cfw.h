@@ -30,8 +30,8 @@ class nxcontroller_cfw {
   void release(QString button);
   void detachController();
   void configuresleep(int mainLoopSleepTime, int buttonClickSleepTime);
-  void LStick(short x, short y);
-  void RStick(short x, short y);
+  void LStick(int x, int y);
+  void RStick(int x, int y);
   QString peek(uint offset, uint size);
   QString peek(QString offset, QString size);
   void poke(uint offset, QByteArray data);
@@ -42,7 +42,7 @@ class nxcontroller_cfw {
  private:
   QTcpSocket ts;
   void send(QString msg);
-  QString tohex(short n);
+  QString tohex(int n);
 };
 
 #endif  // NXCONTROLLER_CFW_H

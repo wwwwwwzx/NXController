@@ -146,6 +146,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
     releaseMouse();
     isUsingMouse = false;
     ui->L_MousePad->setVisible(false);
+    setCursor(Qt::ArrowCursor);
   }
   if (isDisconnected)
     return;
@@ -371,38 +372,49 @@ void MainWindow::on_B_UseMouse_clicked() {
     setMouseTracking(true);
     grabMouse();
     ui->L_MousePad->setVisible(true);
+    setCursor(Qt::BlankCursor);
   }
 }
 
 void MainWindow::mousePressEvent(QMouseEvent* event) {
   if (isDisconnected || !isUsingMouse)
     return;
-  QKeyEvent ke = QKeyEvent(QEvent::KeyPress, keytable.A, Qt::NoModifier);
+  QKeyEvent ke = QKeyEvent(QEvent::KeyPress, Qt::NoButton, Qt::NoModifier);
   if (event->button() == Qt::LeftButton)
-    ke = QKeyEvent(QEvent::KeyPress, keytable.A, Qt::NoModifier);
+    ke = QKeyEvent(QEvent::KeyPress, keytable.Mouse_Left, Qt::NoModifier);
   else if (event->button() == Qt::RightButton)
-    ke = QKeyEvent(QEvent::KeyPress, keytable.B, Qt::NoModifier);
+    ke = QKeyEvent(QEvent::KeyPress, keytable.Mouse_Right, Qt::NoModifier);
+  else if (event->button() == Qt::MidButton)
+    ke = QKeyEvent(QEvent::KeyPress, keytable.Mouse_Middle, Qt::NoModifier);
+  else
+    return;
   keyPressEvent(&ke);
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent* event) {
   if (isDisconnected || !isUsingMouse)
     return;
-  QKeyEvent ke = QKeyEvent(QEvent::KeyRelease, keytable.A, Qt::NoModifier);
+  QKeyEvent ke = QKeyEvent(QEvent::KeyRelease, Qt::NoButton, Qt::NoModifier);
   if (event->button() == Qt::LeftButton)
-    ke = QKeyEvent(QEvent::KeyRelease, keytable.A, Qt::NoModifier);
+    ke = QKeyEvent(QEvent::KeyRelease, keytable.Mouse_Left, Qt::NoModifier);
   else if (event->button() == Qt::RightButton)
-    ke = QKeyEvent(QEvent::KeyRelease, keytable.B, Qt::NoModifier);
+    ke = QKeyEvent(QEvent::KeyRelease, keytable.Mouse_Right, Qt::NoModifier);
+  else if (event->button() == Qt::MidButton)
+    ke = QKeyEvent(QEvent::KeyRelease, keytable.Mouse_Middle, Qt::NoModifier);
+  else
+    return;
   keyReleaseEvent(&ke);
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent* event) {
   if (isDisconnected || !isUsingMouse)
     return;
-  int dx = (event->globalX() - Prev_X) * 0x100;
-  int dy = (event->globalY() - Prev_Y) * 0x100;
+  int dx = 0, dy = 0;
+  for (int i = 0; i < 10; i++) {
+    dx += (event->x() - width() / 2) * 0x800;
+    dy += (event->y() - height() / 2) * 0x800;
+    QCursor::setPos(mapToGlobal(QPoint(width() / 2, height() / 2)));
+    QThread::msleep(10);
+  }
   b.RStick(dx, -dy);
-  QThread::msleep(30);
-  Prev_X = event->globalX();
-  Prev_Y = event->globalY();
 }

@@ -74,6 +74,10 @@ void buttonconfig::loadsettings() {
   ui->K_RS_Down->setText(QKeySequence(config.RS_Down).toString(QKeySequence::NativeText));
   ui->K_RS_Left->setText(QKeySequence(config.RS_Left).toString(QKeySequence::NativeText));
   ui->K_RS_Right->setText(QKeySequence(config.RS_Right).toString(QKeySequence::NativeText));
+
+  ui->K_Mouse_Left->setText(QKeySequence(config.Mouse_Left).toString(QKeySequence::NativeText));
+  ui->K_Mouse_Right->setText(QKeySequence(config.Mouse_Right).toString(QKeySequence::NativeText));
+  ui->K_Mouse_Middle->setText(QKeySequence(config.Mouse_Middle).toString(QKeySequence::NativeText));
 }
 
 void buttonconfig::on_K_A_textChanged(const QString& newtext) {
@@ -154,4 +158,14 @@ void buttonconfig::on_K_RS_Left_textChanged(const QString& newtext) {
 }
 void buttonconfig::on_K_RS_Right_textChanged(const QString& newtext) {
   config.RS_Right = QKeySequence(newtext)[0];
+}
+
+void buttonconfig::on_K_Mouse_Left_textChanged(const QString& newtext) {
+  config.Mouse_Left = QKeySequence(newtext)[0];
+}
+void buttonconfig::on_K_Mouse_Right_textChanged(const QString& newtext) {
+  config.Mouse_Right = QKeySequence(newtext)[0];
+}
+void buttonconfig::on_K_Mouse_Middle_textChanged(const QString& newtext) {
+  config.Mouse_Middle = QKeySequence(newtext)[0];
 }

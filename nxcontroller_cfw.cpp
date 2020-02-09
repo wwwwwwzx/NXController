@@ -55,17 +55,17 @@ void nxcontroller_cfw::configuresleep(int mainLoopSleepTime, int buttonClickSlee
   send("configure buttonClickSleepTime " + QString::number(buttonClickSleepTime));
 }
 
-QString nxcontroller_cfw::tohex(short n) {
+QString nxcontroller_cfw::tohex(int n) {
   return QString(n < 0 ? "-" : "") + "0x" + QString::number(abs(n), 16);
 }
 
-void nxcontroller_cfw::LStick(short x, short y) {
+void nxcontroller_cfw::LStick(int x, int y) {
   LS_X = x;
   LS_Y = y;
   send("setStick LEFT " + tohex(x) + " " + tohex(y));
 }
 
-void nxcontroller_cfw::RStick(short x, short y) {
+void nxcontroller_cfw::RStick(int x, int y) {
   RS_X = x;
   RS_Y = y;
   send("setStick RIGHT " + tohex(x) + " " + tohex(y));
