@@ -23,13 +23,15 @@
 #include <QMessageBox>
 #include <QSerialPortInfo>
 #include <QKeyEvent>
+#include <QThread>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   qRegisterMetaTypeStreamOperators<inputtable>("inputtable");
   QSettings setting;
   on_B_Refresh_clicked();
-  ui->B_Disconnect->setEnabled(false);
+  showhidebuttons();
+  ui->L_MousePad->setStyleSheet("QLabel {color: white; background-color: black}");
   setMinimumHeight(135);
   setMaximumHeight(135);
   ui->ipaddress->setText(setting.value("settings/ip", "192.168.0.1").toString());
@@ -37,7 +39,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   ui->datasize->setText(setting.value("settings/datasize", "8").toString());
   loadbuttonconfig();
   on_B_Connect_clicked();
-  if (ui->B_Connect->isEnabled())
+  if (isDisconnected)
     ui->RB_Socket->setChecked(true);
   if (ui->ipaddress->text() != "192.168.0.1")
     on_B_Connect_clicked();  // Try to connect sys-botbase
@@ -56,6 +58,19 @@ void MainWindow::on_B_Refresh_clicked() {
       if (port.portName() == last_device)
         ui->devicelist->setCurrentIndex(ui->devicelist->count() - 1);
     }
+}
+
+void MainWindow::showhidebuttons() {
+  ui->B_Connect->setVisible(isDisconnected);
+  ui->B_Disconnect->setVisible(!isDisconnected);
+  ui->devicelist->setEnabled(isDisconnected);
+  ui->ipaddress->setEnabled(isDisconnected);
+  ui->RB_Serial->setEnabled(isDisconnected);
+  ui->RB_Socket->setEnabled(isDisconnected);
+  ui->B_Refresh->setEnabled(isDisconnected);
+  ui->B_UseMouse->setVisible(!isDisconnected && ui->RB_Socket->isChecked());
+  if (isDisconnected)
+    ui->L_MousePad->setVisible(false);
 }
 
 void MainWindow::on_B_Connect_clicked() {
@@ -80,12 +95,8 @@ void MainWindow::on_B_Connect_clicked() {
     setMinimumHeight(210);
     setting.setValue("settings/ip", ui->ipaddress->text());
   }
-  ui->B_Connect->setEnabled(false);
-  ui->B_Disconnect->setEnabled(true);
-  ui->devicelist->setEnabled(false);
-  ui->ipaddress->setEnabled(false);
-  ui->RB_Serial->setEnabled(false);
-  ui->RB_Socket->setEnabled(false);
+  isDisconnected = false;
+  showhidebuttons();
 }
 
 void MainWindow::on_B_Disconnect_clicked() {
@@ -98,16 +109,12 @@ void MainWindow::on_B_Disconnect_clicked() {
   setMinimumHeight(135);
   setMaximumHeight(135);
   resize(380, 135);
-  ui->B_Connect->setEnabled(true);
-  ui->B_Disconnect->setEnabled(false);
-  ui->devicelist->setEnabled(true);
-  ui->ipaddress->setEnabled(true);
-  ui->RB_Serial->setEnabled(true);
-  ui->RB_Socket->setEnabled(true);
+  isDisconnected = true;
+  showhidebuttons();
 }
 
 void MainWindow::on_B_Read_clicked() {
-  if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
+  if (isDisconnected || ui->RB_Serial->isChecked())
     return;
   QSettings setting;
   QString datastring = b.peek(ui->ramaddress->text(), ui->datasize->text());
@@ -127,7 +134,7 @@ void MainWindow::on_B_Read_clicked() {
 }
 
 void MainWindow::on_B_Write_clicked() {
-  if (ui->B_Connect->isEnabled() || ui->RB_Serial->isChecked())
+  if (isDisconnected || ui->RB_Serial->isChecked())
     return;
   QSettings setting;
   b.poke(ui->ramaddress->text(), ui->data->text());
@@ -135,7 +142,12 @@ void MainWindow::on_B_Write_clicked() {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {
-  if (ui->B_Connect->isEnabled())
+  if (isUsingMouse && event->key() == Qt::Key_F9) {
+    releaseMouse();
+    isUsingMouse = false;
+    ui->L_MousePad->setVisible(false);
+  }
+  if (isDisconnected)
     return;
   if (event->isAutoRepeat())
     return;
@@ -250,7 +262,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent* event) {
-  if (ui->B_Connect->isEnabled())
+  if (isDisconnected)
     return;
   if (event->isAutoRepeat())
     return;
@@ -351,4 +363,46 @@ void MainWindow::loadbuttonconfig() {
   auto table = setting.value("settings/keyconfig", qVariantFromValue(keytable));
   if (table.isValid())
     keytable = table.value<inputtable>();
+}
+
+void MainWindow::on_B_UseMouse_clicked() {
+  if (!isUsingMouse) {
+    isUsingMouse = true;
+    setMouseTracking(true);
+    grabMouse();
+    ui->L_MousePad->setVisible(true);
+  }
+}
+
+void MainWindow::mousePressEvent(QMouseEvent* event) {
+  if (isDisconnected || !isUsingMouse)
+    return;
+  QKeyEvent ke = QKeyEvent(QEvent::KeyPress, keytable.A, Qt::NoModifier);
+  if (event->button() == Qt::LeftButton)
+    ke = QKeyEvent(QEvent::KeyPress, keytable.A, Qt::NoModifier);
+  else if (event->button() == Qt::RightButton)
+    ke = QKeyEvent(QEvent::KeyPress, keytable.B, Qt::NoModifier);
+  keyPressEvent(&ke);
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent* event) {
+  if (isDisconnected || !isUsingMouse)
+    return;
+  QKeyEvent ke = QKeyEvent(QEvent::KeyRelease, keytable.A, Qt::NoModifier);
+  if (event->button() == Qt::LeftButton)
+    ke = QKeyEvent(QEvent::KeyRelease, keytable.A, Qt::NoModifier);
+  else if (event->button() == Qt::RightButton)
+    ke = QKeyEvent(QEvent::KeyRelease, keytable.B, Qt::NoModifier);
+  keyReleaseEvent(&ke);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent* event) {
+  if (isDisconnected || !isUsingMouse)
+    return;
+  int dx = (event->globalX() - Prev_X) * 0x100;
+  int dy = (event->globalY() - Prev_Y) * 0x100;
+  b.RStick(dx, -dy);
+  QThread::msleep(30);
+  Prev_X = event->globalX();
+  Prev_Y = event->globalY();
 }

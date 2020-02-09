@@ -41,6 +41,9 @@ class MainWindow : public QMainWindow {
   nxcontroller c;
   nxcontroller_cfw b;
   inputtable keytable;
+  void mouseMoveEvent(QMouseEvent* event);
+  void mousePressEvent(QMouseEvent* event);
+  void mouseReleaseEvent(QMouseEvent* event);
 
  private slots:
   void on_B_Refresh_clicked();
@@ -49,9 +52,13 @@ class MainWindow : public QMainWindow {
   void on_B_Write_clicked();
   void on_B_Read_clicked();
   void on_B_Settings_clicked();
+  void on_B_UseMouse_clicked();
 
  private:
   void loadbuttonconfig();
   Ui::MainWindow* ui;
+  bool isUsingMouse, isDisconnected = true;
+  void showhidebuttons();
+  int Prev_X, Prev_Y;
 };
 #endif  // MAINWINDOW_H

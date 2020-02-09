@@ -86,7 +86,7 @@
    <widget class="QPushButton" name="B_Disconnect">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>10</x>
       <y>100</y>
       <width>110</width>
       <height>25</height>
@@ -274,6 +274,52 @@
     </property>
     <property name="text">
      <string>Settings</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="B_UseMouse">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>100</y>
+      <width>110</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="text">
+     <string>Use Mouse</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="L_MousePad">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>380</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>CrossCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>Press F9 to Stop</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
