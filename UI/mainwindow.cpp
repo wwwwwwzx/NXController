@@ -268,7 +268,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent* event) {
       c.RS_XCenter();
     else if (key == keytable.RS_Up || key == keytable.RS_Down)
       c.RS_YCenter();
-    else if (key == keytable.D_Up || keytable.D_Down || keytable.D_Left || keytable.D_Right)
+    else if (key == keytable.D_Up || key == keytable.D_Down || key == keytable.D_Left || key == keytable.D_Right)
       c.Dpad_Center();
     else if (key == keytable.Capture)
       c.Capture(-1);
