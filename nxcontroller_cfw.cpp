@@ -23,8 +23,8 @@
 
 nxcontroller_cfw::nxcontroller_cfw() {}
 
-bool nxcontroller_cfw::connect(QString IP) {
-  ts.connectToHost(QHostAddress(IP), 6000, QIODevice::ReadWrite);
+bool nxcontroller_cfw::connect(QString IP, short port) {
+  ts.connectToHost(QHostAddress(IP), port, QIODevice::ReadWrite);
   ts.waitForConnected(2000);
   return ts.state() == QAbstractSocket::ConnectedState;
 }

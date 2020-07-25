@@ -65,7 +65,11 @@ void MainWindow::on_B_Connect_clicked() {
       return;
     setting.setValue("settings/serialport", ui->devicelist->currentText());
   } else {
-    if (!b.connect(ui->ipaddress->text())) {
+    QStringList buffer = ui->ipaddress->text().split(":");
+    short port = 6000;
+    if (buffer.length() > 1)
+      port = buffer[1].toShort();
+    if (!b.connect(buffer[0],port)) {
       QMessageBox MB;
       MB.critical(0, "Error", "Connection failed");
       MB.setFixedSize(500, 180);

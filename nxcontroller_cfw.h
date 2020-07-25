@@ -24,7 +24,7 @@
 class nxcontroller_cfw {
  public:
   nxcontroller_cfw();
-  bool connect(QString IP);
+  bool connect(QString IP, short port = 6000);
   void press(QString button);
   void click(QString button);
   void release(QString button);
