@@ -43,8 +43,12 @@ after_build:
     - cmd: xcopy /I bin\atmosphere\contents\430000000000000B\exefs.nsp NXController-windows\atmosphere\contents\430000000000000B\
     - cmd: 7z a NXController-%OS%.zip NXController-windows\
     # Linux
-    - sh: zip -r NXController-linux.zip NXController bin
-    
+    - sh: wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/6/linuxdeployqt-6-x86_64.AppImage"
+    - sh: chmod a+x linuxdeployqt*.AppImage
+    - sh: unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
+    - sh: ./linuxdeployqt*.AppImage ./appdir/usr/bin/* -appimage -verbose=2
+    - sh: zip -r NXController-linux.zip NXController*.AppImage
+
 artifacts:
 - path: NXController-%OS%.zip
 
