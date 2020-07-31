@@ -10,7 +10,7 @@ environment:
     OS: win32
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x86
-  - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1804
+  - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1604
     OS: linux
 
 install:
